@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import lombok.extern.log4j.Log4j;
 
+//히카리 쓰기전??
 @Log4j
 public class JDBCTests {
 	
