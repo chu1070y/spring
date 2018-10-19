@@ -1,5 +1,7 @@
 package org.salem.domain;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 import lombok.Data;
 
 @Data
@@ -37,12 +39,23 @@ public class PageParam {
 		this.prev = this.start != 1;
 	}
 	
-	public static void main(String[] args) {
-		PageParam obj = new PageParam();
-		obj.setPage(13);
-		obj.setTotal(178);
+	public String getLink(String path) {
 		
-		System.out.println(obj);
+		return UriComponentsBuilder.fromPath(path)
+		.queryParam("bno", this.bno)
+		.queryParam("page", this.page)
+		.toUriString();
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		PageParam obj = new PageParam();
+		obj.setBno(123);
+		obj.setPage(7);
+
+		
+		System.out.println(obj.getLink("redirect:/board/read"));
 	}
 	
 }

@@ -41,4 +41,15 @@ public class BoardMapperTests {
 		log.info(mapper.insert(board));
 	}
 	
+	@Test
+	public void test() {
+		
+		PageParam param = new PageParam();
+		param.setBno(130044);
+		
+		log.info(mapper.get(param));
+		
+		
+	}
+	
 }

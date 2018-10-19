@@ -22,10 +22,30 @@ public class BoardController {
 	
 	private BoardService service;
 	
-	@GetMapping("/read")
+	@GetMapping({"/read","/modify"})
 	public void read(@ModelAttribute("pageObj") PageParam pageParam, Model model) {
-
+		log.info(pageParam);
 		model.addAttribute("board", service.get(pageParam));
+	}
+	
+	@PostMapping("/modify")
+	public String modify(PageParam pageParam, Board board, RedirectAttributes rttr) {
+		
+		int result = service.modify(board);
+		
+		rttr.addFlashAttribute("result", result==1 ?"success":"fail");
+		
+		return pageParam.getLink("redirect:/board/read");
+	}
+	
+	@PostMapping("/remove")
+	public String remove(PageParam pageParam, RedirectAttributes rttr) {
+
+		int count = service.remove(pageParam);
+		
+		rttr.addFlashAttribute("result",count==1?"success":"fail");
+		
+		return "redirect:/board/list?page="+pageParam.getPage();
 	}
 	
 	@GetMapping("/list")

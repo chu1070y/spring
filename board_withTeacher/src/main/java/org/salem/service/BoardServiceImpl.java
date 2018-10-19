@@ -39,4 +39,16 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.get(param);
 	}
 
+	@Override
+	public int remove(PageParam param) {
+
+		return mapper.delete(param);
+	}
+
+	@Override
+	public int modify(Board board) {
+
+		return mapper.update(board);
+	}
+
 }
