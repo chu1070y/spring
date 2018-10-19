@@ -6,6 +6,8 @@ import org.salem.domain.Todo;
 
 public interface TodoMapper {
 	
+	public int count();
+	
 	public List<Todo> select();
 	
 	public void insert(String title);
