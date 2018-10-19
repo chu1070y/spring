@@ -14,7 +14,7 @@ public interface BoardMapper {
 	@Update("update tbl_board set title = #{title} , content = #{content} where bno = #{bno}")
 	public int update(Board board);
 	
-	@Select("select * from tbl_board order by bno desc limit ${skip}, 10")
+	@Select("select * from tbl_board order by bno desc limit ${skip}, #{display}")
 	public List<Board> getList(PageParam param);
 	
 	@Select("select * from tbl_board where bno = #{bno}")

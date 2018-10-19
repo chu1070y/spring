@@ -17,11 +17,24 @@
 <!-- /.row -->
 
 
+
+
 <div class="row">
    <div class="col-lg-12">
       <div class="panel panel-default">
-         <div class="panel-heading">Board List</div>
+         <div class="panel-heading">
+				Board List 
+				<select id="select">
+					<option value="10" ${pageObj.display == 10 ? "selected":""}>10</option>
+					<option value="20" ${pageObj.display == 20 ? "selected":""}>20</option>
+					<option value="50" ${pageObj.display == 50 ? "selected":""}>50</option>
+					<option value="100" ${pageObj.display == 100 ? "selected":""}>100</option>
+				</select> 
+			</div>
          <!-- /.panel-heading -->
+         
+         		
+				
          <div class="panel-body">
             <div class="table-responsive">
                <table class="table table-striped table-bordered table-hover">
@@ -80,6 +93,7 @@
    
 <form id='actionForm'>
    <input type='hidden' name='page' id='page' value='${pageObj.page}'>
+   <input type='hidden' name='display' id='display' value='${pageObj.display}'>
 </form>
 
    <!-- Modal -->
@@ -111,6 +125,7 @@
          var actionForm = $("#actionForm");
          var pageNum = ${pageObj.page};
          
+         //게시판 제목 클릭하기
          $(".board").on("click",function(e){
             e.preventDefault();
             var bno = $(this).attr("href");
@@ -120,8 +135,10 @@
 
          });
          
+         //버튼 활성화
          $('.pagination li[data-page='+pageNum+']').addClass("active");
             
+         //버튼 클릭
          $('.pagination li a').on("click", function(e){
             
             e.preventDefault();
@@ -133,9 +150,22 @@
             .attr("method", "get").submit();
             
          });
+             
+         //selectbox 코드
+         $('#select').change(function(e){
+        	 
+        	e.preventDefault();
+        	
+       		var display = $(this).val();
+        	$("#display").val(display);
+        	
+         	actionForm.attr("action", "/board/list")
+            .attr("method", "get").submit();
+        	 
+         });
          
          var msg = $("#myModal");
-         var result = '<c:out value="${result }"/>';
+         var result = '<c:out value="${result}"/>';
 
          checkModal(result);
          history.replaceState({}, null, null);
@@ -152,7 +182,9 @@
          }
          
       }
-     });
+         
+    });
+
    </script>
    
 
