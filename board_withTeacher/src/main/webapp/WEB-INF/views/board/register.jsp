@@ -35,10 +35,10 @@
 							<textarea class="form-control" rows="3" name="content">Sample text</textarea>
 						</div>
 						<button type="submit" class="btn btn-default">등록하기
-							Button</button>
+							</button>
 					</form>
 					<form action="/board/list" method="get">
-						<button type="submit" class="btn btn-default">목록으로/button>
+						<button type="submit" class="btn btn-default">목록으로</button>
 					</form>
 				</div>
 				<!-- /.panel-body -->
