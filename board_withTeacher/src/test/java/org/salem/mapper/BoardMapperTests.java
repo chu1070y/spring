@@ -25,9 +25,9 @@ public class BoardMapperTests {
 		PageParam param = new PageParam();
 		param.setPage(1);
 		
-		log.info(mapper.getList(param));
+		log.info(mapper.getPureList(param));
 		
-		mapper.getList(param).forEach(board -> log.info(board));
+//		mapper.getList(param).forEach(board -> log.info(board));
 		
 	}
 	
