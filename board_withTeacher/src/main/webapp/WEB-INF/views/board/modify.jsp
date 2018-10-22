@@ -25,6 +25,9 @@
 				<form role="form" action="modify" method="post">
 				
 					<input type="hidden" name="bno" value="${board.bno}">
+					<input type='hidden' name='display' id='display' value='${pageObj.display}'>
+ 					<input type='hidden' name='keyword' id='keyword' value='${pageObj.keyword}'>
+ 					<input type='hidden' name='types' id='types' value='${pageObj.types}'>
 				
 						<div class="form-group">
 							<label>Title</label> <input class="form-control" name="title" value="<c:out value='${board.title}'/>" >
@@ -44,14 +47,20 @@
 						</div>
 						</form>
 						
-						
 					<form role="form" action="/board/list" method="get">
 					<input type="hidden" name="page" value="${pageObj.page}">
+					<input type='hidden' name='display' id='display' value='${pageObj.display}'>
+ 					<input type='hidden' name='keyword' id='keyword' value='${pageObj.keyword}'>
+ 					<input type='hidden' name='types' id='types' value='${pageObj.types}'>
 						<button type="submit" class="btn btn-default">Go List</button>
 					</form>
+					
 					<form role="form" action="/board/remove" method="post">
 					<input type="hidden" name="page" value="${pageObj.page}">
 					<input type="hidden" name="bno" value="${pageObj.bno}">
+					<input type='hidden' name='display' id='display' value='${pageObj.display}'>
+ 					<input type='hidden' name='keyword' id='keyword' value='${pageObj.keyword}'>
+ 					<input type='hidden' name='types' id='types' value='${pageObj.types}'>
 						<button type="submit" class="btn btn-default">Remove</button>
 					</form>
 					

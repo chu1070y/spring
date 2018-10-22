@@ -14,9 +14,27 @@ public class PageParam {
 	
 	private boolean prev,next;
 	
+	private boolean extend;
+	private String types;
+	private String keyword;
+	private String[] typeArr;
+	
 	public PageParam() {
 		this.page = 1;
 		this.display = 10;
+		this.extend=false;
+		this.keyword="";
+		this.types="";
+	}
+	
+	public String[] getTypeArr() {
+		this.typeArr = new String[this.types.length()];
+		
+		for (int i = 0 ; i < this.types.length(); i++) {
+			this.typeArr[i] = this.types.substring(i,i+1);
+		}
+		
+		return this.typeArr;
 	}
 	
 	public int getSkip() {
@@ -44,6 +62,8 @@ public class PageParam {
 		return UriComponentsBuilder.fromPath(path)
 		.queryParam("bno", this.bno)
 		.queryParam("page", this.page)
+		.queryParam("types", this.types)
+		.queryParam("keyword", this.keyword)
 		.toUriString();
 		
 	}

@@ -90,10 +90,37 @@
          </ul>
       </div>
    </div>
+
+
+   <div class="col-sm-12">
+   <div class="input-group custom-search-form">
+
+   								<select id="sType" class="form-control">
+   									<option value="---">---</option>
+   									<option value="t" ${pageObj.types == 't' ? "selected":""}>제목</option>
+									<option value="c" ${pageObj.types == 'c' ? "selected":""}>내용</option>
+									<option value="w" ${pageObj.types == 'w' ? "selected":""}>작성자</option>
+									<option value="tc" ${pageObj.types == 'tc' ? "selected":""}>제목+내용</option>
+									<option value="tcw" ${pageObj.types == 'tcw' ? "selected":""}>제목+내용+작성자</option>
+								</select>
+
+								 
+                                <input type="text" class="form-control" id="sKeyword" placeholder="Search..." value="${pageObj.keyword}">
+                                <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="sBtn">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                          	    </span>
+   </div>
+   </div>
+
+   
    
 <form id='actionForm'>
    <input type='hidden' name='page' id='page' value='${pageObj.page}'>
    <input type='hidden' name='display' id='display' value='${pageObj.display}'>
+   <input type='hidden' name='keyword' id='keyword' value='${pageObj.keyword}'>
+   <input type='hidden' name='types' id='types' value='${pageObj.types}'>
 </form>
 
    <!-- Modal -->
@@ -150,7 +177,7 @@
             .attr("method", "get").submit();
             
          });
-             
+         
          //selectbox 코드
          $('#select').change(function(e){
         	 
@@ -159,11 +186,31 @@
        		var display = $(this).val();
         	$("#display").val(display);
         	
-         	actionForm.attr("action", "/board/list")
-            .attr("method", "get").submit();
+         	actionForm
+         	.attr("action", "/board/list")
+            .attr("method", "get")
+            .submit();
         	 
          });
          
+         //Search 코드
+         $('#sBtn').on("click",function(e){
+        	 
+        	 var keyword = $("#sKeyword").val();
+        	 var type =  $("#sType").val();
+        	 
+        	 $("#keyword").val(keyword);
+        	 $("#types").val(type);
+        	 
+          	actionForm
+         	.attr("action", "/board/list")
+            .attr("method", "get")
+            .submit();
+        	 
+         });
+         
+         
+         //Modal창
          var msg = $("#myModal");
          var result = '<c:out value="${result}"/>';
 

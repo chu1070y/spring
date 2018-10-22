@@ -28,9 +28,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int getTotal() {
+	public int getTotal(PageParam param) {
 
-		return mapper.count();
+		return mapper.count(param);
+	}
+	
+	@Override
+	public int getPureTotal() {
+
+		return mapper.pureCount();
 	}
 
 	@Override
@@ -49,6 +55,12 @@ public class BoardServiceImpl implements BoardService {
 	public int modify(Board board) {
 
 		return mapper.update(board);
+	}
+
+	@Override
+	public List<Board> getPureList(PageParam param) {
+		
+		return mapper.getPureList(param);
 	}
 
 }

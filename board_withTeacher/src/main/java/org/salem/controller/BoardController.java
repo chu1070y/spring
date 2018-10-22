@@ -45,14 +45,25 @@ public class BoardController {
 		
 		rttr.addFlashAttribute("result",count==1?"success":"fail");
 		
-		return "redirect:/board/list?page="+pageParam.getPage();
+		return "redirect:/board/list?page="+pageParam.getPage()
+									+"&display="+pageParam.getDisplay()
+									+"&keyword="+pageParam.getKeyword()
+									+"&types="+pageParam.getTypes();
 	}
 	
 	@GetMapping("/list")
 	public void list(@ModelAttribute("pageObj") PageParam pageParam, Model model) {
 		log.info("list page.....");
-
-		pageParam.setTotal(service.getTotal());
+		
+		
+		//쓸 필요 없었네염....
+//		if(pageParam.getKeyword()=="") {
+//			pageParam.setTotal(service.getPureTotal());
+//			model.addAttribute("list", service.getPureList(pageParam));
+//			return;
+//		}
+		
+		pageParam.setTotal(service.getTotal(pageParam));
 		model.addAttribute("list", service.getList(pageParam));
 	}
 	

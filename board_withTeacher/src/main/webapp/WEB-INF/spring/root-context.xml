@@ -12,9 +12,8 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName"
-			value="com.mysql.cj.jdbc.Driver"></property>
-		<property name="jdbcUrl"
-			value="jdbc:mysql://10.10.10.102:3306/jr?useSSL=false&amp;serverTimezone=Asia/Seoul&amp;allowPublicKeyRetrieval=true"></property>
+			value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://10.10.10.102:3306/jr?useSSL=false&amp;serverTimezone=Asia/Seoul&amp;logger=com.mysql.jdbc.log.Slf4JLogger&amp;profileSQL=true&amp;allowPublicKeyRetrieval=true"></property>
 		<property name="username" value="salem"></property>
 		<property name="password" value="salem"></property>
 	</bean>

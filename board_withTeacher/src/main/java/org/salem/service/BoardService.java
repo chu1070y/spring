@@ -8,10 +8,14 @@ import org.salem.domain.PageParam;
 public interface BoardService {
 	
 	public List<Board> getList(PageParam param);
+	
+	public List<Board> getPureList(PageParam param);
 
 	public int register(Board board);
 
-	public int getTotal();
+	public int getTotal(PageParam param);
+	
+	public int getPureTotal();
 	
 	public Board get(PageParam param);
 	

@@ -14,8 +14,8 @@ public interface BoardMapper {
 	@Update("update tbl_board set title = #{title} , content = #{content} where bno = #{bno}")
 	public int update(Board board);
 	
-	@Select("select * from tbl_board order by bno desc limit ${skip}, #{display}")
-	public List<Board> getList(PageParam param);
+	@Select("select * from tbl_board where bno > (select max(bno) - 100000 from tbl_board) order by bno desc limit ${skip},#{display}")
+	public List<Board> getPureList(PageParam param);
 	
 	@Select("select * from tbl_board where bno = #{bno}")
 	public Board get(PageParam param);
@@ -25,9 +25,13 @@ public interface BoardMapper {
 	public int insert(Board board);
 	
 	@Select("select count(*) from tbl_board")
-	public int count();
+	public int pureCount();
 	
 	@Delete("delete from tbl_board where bno = #{bno}")
 	public int delete(PageParam param);
+	
+	public List<Board> getList(PageParam param);
+	
+	public int count(PageParam param);
 	
 }

@@ -45,10 +45,10 @@ public class BoardMapperTests {
 	public void test() {
 		
 		PageParam param = new PageParam();
-		param.setBno(130044);
+		param.setKeyword("");
+		param.setTypes("");
 		
-		log.info(mapper.get(param));
-		
+		log.info(mapper.getList(param));
 		
 	}
 	
