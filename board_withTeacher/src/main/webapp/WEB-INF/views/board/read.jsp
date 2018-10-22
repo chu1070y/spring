@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@include file="../includes/header.jsp"%>
-
+<div id="page-wrapper">
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">Read</h1>
@@ -79,7 +79,7 @@
       <!-- /.modal-dialog -->
    </div>
    <!-- /.modal -->
-
+</div>
 
 <%@include file="../includes/footer.jsp"%>
 

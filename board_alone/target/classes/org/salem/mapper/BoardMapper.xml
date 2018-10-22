@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이게 있어야 ctrl + spacebar가 된다. -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace이름은 인터페이스와 동일하게 줘야 인식한다. -->
+
+<mapper namespace="org.salem.mapper.BoardMapper">
+
+	<select id="getList" resultType="org.salem.domain.Board" parameterType="org.salem.domain.Page">
+		 select * from tbl_board order by bno desc limit ${skip}, 10
+	</select>
+
+	<select id="count" resultType="Integer">
+		select count(*) from tbl_board
+	</select>
+</mapper>

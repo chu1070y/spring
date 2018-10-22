@@ -5,6 +5,8 @@
 
 <%@include file="../includes/header.jsp"%>
 
+<div id="page-wrapper">
+
 <div class="row">
    <div class="col-lg-12">
       <h1 class="page-header">LIST</h1>
@@ -15,8 +17,6 @@
    <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-
-
 
 
 <div class="row">
@@ -143,6 +143,8 @@
       <!-- /.modal-dialog -->
    </div>
    <!-- /.modal -->
+</div>
+
 
    <%@include file="../includes/footer.jsp"%>
 
