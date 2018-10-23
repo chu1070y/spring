@@ -28,5 +28,11 @@ public class BoardServiceImp implements BoardService{
 		return mapper.count();
 	}
 
+	@Override
+	public int register(Board board) {
+
+		return mapper.register(board);
+	}
+
 	
 }

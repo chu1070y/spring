@@ -11,4 +11,6 @@ public interface BoardService {
 	
 	public Integer count();
 	
+	public int register(Board board);
+	
 }

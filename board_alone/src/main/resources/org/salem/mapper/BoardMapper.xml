@@ -15,4 +15,9 @@
 	<select id="count" resultType="Integer">
 		select count(*) from tbl_board
 	</select>
+	
+	<insert id="register">
+		insert into tbl_board(title, writer, content) values(#{title},#{writer},#{content})
+	</insert>
+	
 </mapper>
