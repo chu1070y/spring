@@ -45,8 +45,8 @@ public class BoardMapperTests {
 	public void test() {
 		
 		PageParam param = new PageParam();
-		param.setKeyword("");
-		param.setTypes("");
+		param.setKeyword("가익");
+		param.setTypes("t");
 		
 		log.info(mapper.getList(param));
 		
