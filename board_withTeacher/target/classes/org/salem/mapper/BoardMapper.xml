@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 이게 있어야 ctrl + spacebar가 된다. -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace이름은 인터페이스와 동일하게 줘야 인식한다. -->
+<!-- concat은 문자열을 합치는 기능이다. -->
+<!-- 검색에서 쿼리의 성능을 높이기 위해 하는 방법 1. 캐싱(자주 이용하는 검색조건에 해당되는 걸 미리 저장해놓는다.) 2. 
+	범위를 줄이는 것 (최근 10만건, 최근 1개월로 한 다음 추가적으로 더 검색하시겠습니까?) -->
+
+<mapper namespace="org.salem.mapper.BoardMapper">
+
+	 <select id="getList" resultType="org.salem.domain.Board">
+      select * from tbl_board
+      
+      <where>
+      
+      <foreach item="item" collection="typeArr" open="(" close=")" separator="or">
+      
+      	<if test="item =='t'.toString()">
+      		title like concat('%',#{keyword},'%')
+      	</if>
+      	
+      	<if test="item =='c'.toString()">
+      		content like concat('%',#{keyword},'%')
+      	</if>
+      	
+      	<if test="item =='w'.toString()">
+      		writer like concat('%',#{keyword},'%')
+      	</if>
+
+      </foreach>
+      
+      <if test="!extend">
+         and bno > (select max(bno) - 100000 from tbl_board)
+      </if>
+      
+      </where>
+	  
+      order by bno desc
+      limit #{skip}, #{display}
+   </select>
+   
+   
+   
+   
+   <select id="count" resultType="int">
+      select count(*) from tbl_board
+      
+      <where>
+      
+      <foreach item="item" collection="typeArr" open="(" close=")" separator="or">
+      
+      	<if test="item =='t'.toString()">
+      		title like concat('%',#{keyword},'%')
+      	</if>
+      	
+      	<if test="item =='c'.toString()">
+      		content like concat('%',#{keyword},'%')
+      	</if>
+      	
+      	<if test="item =='w'.toString()">
+      		writer like concat('%',#{keyword},'%')
+      	</if>
+
+      </foreach>
+      
+      <if test="!extend">
+         and bno > (select max(bno) - 100000 from tbl_board)
+      </if>
+      
+      </where>
+      </select>
+      
+
+   
+   
+   
+   
+   
+<!--    <include refid="search"></include> -->
+   
+      <sql id="search">
+         <choose>
+         <when test="scond == 't'.toString()">
+            title like concat('%',#{keyword},'%')
+         </when>
+
+         <when test="scond == 'c'.toString()">
+            content like concat('%',#{keyword},'%')
+         </when>
+
+         <when test="scond == 'w'.toString()">
+            writer like concat('%',#{keyword},'%')
+         </when>
+
+         <when test="scond == 'tc'.toString()">
+            (content like concat('%',#{keyword},'%') 
+             or title like concat('%',#{keyword},'%'))
+         </when>
+
+         <when test="scond == 'tcw'.toString()">
+            (content like concat('%',#{keyword},'%') 
+             or title like concat('%',#{keyword},'%')
+             or writer like concat('%',#{keyword},'%'))
+         </when>
+      </choose>
+   </sql>
+
+
+
+</mapper>
