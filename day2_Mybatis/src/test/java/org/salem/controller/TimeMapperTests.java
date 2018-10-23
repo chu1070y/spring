@@ -1,6 +1,11 @@
 package org.salem.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.junit.Test;
+import org.salem.domain.PageParam;
+import org.salem.mapper.BoardMapper;
 import org.salem.mapper.TimeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,8 +19,8 @@ public class TimeMapperTests extends AbstractTests{
 	private TimeMapper mapper;
 	
 	
-	// ÀÎÅÍÆäÀÌ½ºÀÎµ¥ ½ÇÇàÀÌµÈ´Ù. ±× ÀÌÀ¯´Â ½ºÇÁ¸µÀÌ ÀÎÅÍÆäÀÌ½º¿¡ ¸Â´Â Å¬·¡½º¸¦ ¸¸µé¾î ³½´Ù.
-	// ÀÎÅÍÆäÀÌ½º¸¦ µû·Î ±¸ÇöÇØ ÁÙ ÇÊ¿ä°¡ ¾ø´Ù.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ÌµÈ´ï¿½. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê¿ä°¡ ï¿½ï¿½ï¿½ï¿½.
 	@Test
 	public void testTime() {
 		log.info(mapper.getTime());
@@ -25,5 +30,23 @@ public class TimeMapperTests extends AbstractTests{
 	public void testTime2() {
 		log.info(mapper.getTime2());
 	}
+	
+	
+	@Setter(onMethod_=@Autowired)
+	private BoardMapper boardMapper;
+	
+	@Test
+	public void testSearch() {
+		
+		PageParam pageParam = new PageParam();
+		
+		pageParam.setTypes(new String[] {"t","c"});
+		
+		pageParam.setKeyword("sample");
+		
+		log.info(boardMapper.search(pageParam));
+		log.info(boardMapper.searchCount(pageParam));
+	}
+	
 	
 }

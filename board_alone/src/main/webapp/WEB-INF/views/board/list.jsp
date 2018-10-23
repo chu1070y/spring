@@ -75,6 +75,7 @@
 		</div>
 	</div>
 	<!-- /.row -->
+	<a class="btn btn-default btn-lg btn-block" target="_blank" href="register">글쓰기</a>
 
 </div>
 <!-- /#page-wrapper -->
