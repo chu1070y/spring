@@ -28,13 +28,14 @@
 					<input type='hidden' name='display' id='display' value='${pageObj.display}'>
  					<input type='hidden' name='keyword' id='keyword' value='${pageObj.keyword}'>
  					<input type='hidden' name='types' id='types' value='${pageObj.types}'>
+ 					<input type="hidden" name="page" value="${pageObj.page}">
 				
 						<div class="form-group">
 							<label>Title</label> <input class="form-control" name="title" value="<c:out value='${board.title}'/>" >
 							<p class="help-block">Example block-level help text here.</p>
 						</div>
 						<div class="form-group">
-							<label>Writer</label> <input class="form-control" name="writer" value="<c:out value='${board.writer}'/>" >
+							<label>Writer</label> <input class="form-control" readonly="readonly" name="writer" value="<c:out value='${board.writer}'/>" >
 							<p class="help-block">Example block-level help text here.</p>
 						</div>
 

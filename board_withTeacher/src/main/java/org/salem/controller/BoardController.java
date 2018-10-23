@@ -33,6 +33,8 @@ public class BoardController {
 		
 		int result = service.modify(board);
 		
+		log.info(result);
+		
 		rttr.addFlashAttribute("result", result==1 ?"success":"fail");
 		
 		return pageParam.getLink("redirect:/board/read");

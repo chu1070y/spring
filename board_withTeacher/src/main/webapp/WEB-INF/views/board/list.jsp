@@ -71,8 +71,9 @@
       <div class="dataTables_paginate paging_simple_numbers"
          id="dataTables-example_paginate">
          <ul class="pagination">
-         <c:if test="${pageObj.prev}">
-            <li class="paginate_button previous disabled"
+         
+            <c:if test="${pageObj.prev}">
+            <li class="paginate_button previous "
                aria-controls="dataTables-example" tabindex="0"
                id="dataTables-example_previous"><a href="${pageObj.start -1}">Previous</a></li>
             </c:if>
