@@ -51,7 +51,7 @@
                         <tr>
                            <td><c:out value="${board.bno}" /></td>
                            <td><a href='${board.bno}' class='board'><c:out value="${board.title}" /></a></td>
-                           <td><c:out value="${board.writer}" /></td>
+                           <td><c:out value = "${board.writer}" /></td>
                            <td><fmt:formatDate value="${board.regdate}"
                                  pattern="yyyy-MM-dd HH:mm:ss " /></td>
                         </tr>
