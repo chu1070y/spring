@@ -39,6 +39,17 @@
   
   
 <script>
+//p.533보면 IE/edge 문제관련해서 나옴
+
+$(".thumbs").on("click","p",function(e){
+	
+	var obj = $(this);
+	console.log(obj);
+	
+	var link = "/download/" + obj.attr("data-src");
+	self.location = link;
+	
+});
 
 $(".thumbs").on("click","img",function(e){
 	
@@ -64,6 +75,7 @@ $("#btn").on("click",function(e){
 	
 	console.log(filesObj);
 	
+	//jquery이기 때문에 순수한 데이터를 가져온다.
 	var files = filesObj[0].files;
 	
 	for(var i = 0; i < files.length; i++){
@@ -71,13 +83,14 @@ $("#btn").on("click",function(e){
 		formData.append("files", files[i]);
 	}
 	
+	//processData와 contentType은 꼭 써줘야한다.
 	$.ajax({
 		url:"/upload",
 		processData: false,
 		contentType: false,
 		data: formData,
 		type:"post",
-		success:function(result){
+		success:function(result){//성공하면 실행, 콜백함수 느낌
 			
 			console.log(result);
 			
@@ -89,7 +102,7 @@ $("#btn").on("click",function(e){
 				var fileSrc = (result[i].thumbName + "_" + result[i].ext).substring(2);
 				str += "<div>";
 				str += "<img data-src='"+ fileSrc +"' src='"+path+"'>";
-				str += "<p>" + result[i].originName + "</p>";
+				str += "<p data-src='"+ fileSrc +"'>" + result[i].originName + "</p>";
 				str += "</div>";
 			
 			}//end for
