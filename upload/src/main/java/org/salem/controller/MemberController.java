@@ -15,7 +15,7 @@ public class MemberController {
 	public void login(String id, String pw, Model model) {
 		
 		log.info("id : " + id +", pw : " + pw);
-		
+		log.info("로그인 되었나요?" + (id.equals("aaa") && pw.equals("111")));
 		if(id.equals("aaa") && pw.equals("111")) {
 			MemberVO vo = new MemberVO();
 			vo.setId(id);
