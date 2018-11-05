@@ -1,6 +1,8 @@
 package org.salem.security;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -26,14 +28,29 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
-		log.info("Login success");
+		log.warn("Login success");
+		
+		List<String> roleNames = new ArrayList<>();
 		
 		authentication.getAuthorities().forEach(auth -> {
-			log.info(auth);
+			roleNames.add(auth.getAuthority());
 		});
-		log.info("-----------------");
 		
-		super.onAuthenticationSuccess(request, response, authentication);
+		log.warn("Role Names: " + roleNames);
+		
+		if (roleNames.contains("ROLE_ADMIN")) {
+			
+			response.sendRedirect("/sample/admin");
+			return;
+		}
+		
+		if(roleNames.contains("ROLE_MEMBER")) {
+			
+			response.sendRedirect("/sample/member");
+			return;
+		}
+		
+		response.sendRedirect("/");
 		
 	}
 

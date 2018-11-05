@@ -2,11 +2,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
-	<bean id="loginHandler" class="org.salem.security.CustomLoginSuccessHandler">
-	</bean>
+	
+	
+	<bean id="customAccessDenied" class="org.salem.security.CustomAccessDeniedHandler"></bean>
+	<bean id="customPasswordEncoder" class="org.salem.security.CustomNoOpPasswordEncoder"></bean>
+	<bean id="customLoginSuccess" class="org.salem.security.CustomLoginSuccessHandler"></bean>
+	
+	
 	
 	<security:http>
 	  <security:intercept-url pattern="/sample/all" access="permitAll"/>
@@ -17,30 +24,30 @@
 	  <security:intercept-url pattern="/sample/admin" 
 	    access="hasRole('ROLE_ADMIN')"/>
 	  	
-	
 	  	  
 	  <security:form-login login-page="/customLogin" 
-	    authentication-success-handler-ref="loginHandler"
-	    authentication-failure-handler-ref="loginHandler"/>
+	    authentication-success-handler-ref="customLoginSuccess"
+	    authentication-failure-handler-ref="customLoginSuccess"/>
 	  
-	  <security:logout logout-url="/customLogout"  />
+	  <security:logout logout-url="/customLogout" invalidate-session="true" />
 	  
 	  <!-- <security:access-denied-handler error-page="/accessError" /> -->
+	  <security:access-denied-handler ref="customAccessDenied"/>
 	  
 	</security:http>
 	
 	<security:authentication-manager>
 	  <security:authentication-provider>
-	    <security:user-service>
-	    	<security:user name="member" password="{noop}member" 
-	    	authorities="ROLE_MEMBER"/>
-	    	<security:user name="admin" password="{noop}admin" 
-	    	authorities="ROLE_MEMBER, ROLE_ADMIN"/>
-	    </security:user-service>
+	  
+	  	<security:jdbc-user-service data-source-ref="dataSource"/>
+	  	
+	  	<security:password-encoder ref="customPasswordEncoder"></security:password-encoder>
+
 	  </security:authentication-provider>
 	
-	
 	</security:authentication-manager>
+	
+	<context:component-scan base-package="org.salem.security"></context:component-scan>
 	
 </beans>
 
