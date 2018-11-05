@@ -33,7 +33,6 @@
 			</div>
          <!-- /.panel-heading -->
          
-         		
 				
          <div class="panel-body">
             <div class="table-responsive">
@@ -154,7 +153,7 @@
 
          var actionForm = $("#actionForm");
          var pageNum = ${pageObj.page};
-         
+          
          //게시판 제목 클릭하기
          $(".board").on("click",function(e){
             e.preventDefault();
