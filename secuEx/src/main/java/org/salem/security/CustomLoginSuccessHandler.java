@@ -63,6 +63,8 @@ public class CustomLoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 		
 		log.info(exception);
 		
+		response.sendRedirect("/customLogin?ex001");
+		
 	}
 
 	@Override

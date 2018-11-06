@@ -7,6 +7,8 @@ import javax.sql.DataSource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.salem.domain.MemberVO;
+import org.salem.mapper.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,6 +30,21 @@ public class MemberTests {
 	
 	@Setter(onMethod_ = @Autowired)
 	private DataSource ds;
+	
+	@Setter(onMethod_ = @Autowired)
+	private MemberMapper mapper;
+	
+	@Test
+	public void testAuth() {
+		MemberVO vo = mapper.getMember("user95");
+		log.info(vo);
+	}
+	
+	
+	@Test
+	public void testTime() {
+		log.info(mapper.getTime());
+	}
 	
 	@Test
 	public void testInsertAuth() {
